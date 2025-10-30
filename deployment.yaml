@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: the-hungry-hub-backend-deployment
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app: the-hungry-hub-backend
+  template:
+    metadata:
+      labels:
+        app: the-hungry-hub-backend
+    spec:
+      containers:
+        - name: the-hungry-hub-backend-pod
+          image:
+          ports:
+            - containerPort:

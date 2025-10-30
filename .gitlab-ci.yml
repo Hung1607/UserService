@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+  - cleanup
+build:
+  stage: build
+  script:
+    - mvn clean
+    - mvn package
+    - mvn install
+deploy:
+  stage: deploy
+  image: thehunggryhub-backend:latest
+  script:
+    - docker build -t thehunggryhub-backend:latest .
+    - docker run -d -p 8082:8080 --name thehungryhub-backend-container thehunggryhub-backend:latest
+
+cleanup:
+  stage: cleanup
+  script:
+    - rm -rf target/
